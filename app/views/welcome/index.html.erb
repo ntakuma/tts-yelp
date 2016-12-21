@@ -1,0 +1,19 @@
+<form class="search" role="search">
+  <div class="form-group">
+    <%= form_for root_path, method: :get do %>
+      <%= text_field_tag(:term, nil, placeholder: 'Hamburgers') %>
+      <%= text_field_tag(:city, nil, placeholder: 'Phoenix, AZ') %>
+      <%= submit_tag 'Search', name: nil %>
+    <% end %>
+  </div>
+</form>
+
+<% unless @response.nil? %>
+    <% @response.businesses.each do |business| %>
+        <div class="yelp-response">
+            <h3><%= business.name %></h3>
+            <p><%= image_tag business.image_url %></p>
+            <p><%= image_tag business.rating_img_url %></p>
+        </div>
+    <% end %>
+<% end %>
